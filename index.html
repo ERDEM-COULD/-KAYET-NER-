@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-posta Gönder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>E-posta Gönder</h2>
+        <form id="emailForm">
+            <label for="name">Adınız:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="message">Mesajınız:</label><br>
+            <textarea id="message" name="message" rows="4" required></textarea><br><br>
+
+            <button type="submit">Gönder</button>
+        </form>
+
+        <div id="successMessage" style="display:none;">
+            <h3>FORM GÖNDERME BAŞARILI</h3>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('emailForm').addEventListener('submit', function (event) {
+            event.preventDefault();  // Formun sayfayı yenilemesini engelle
+
+            const formData = new FormData(event.target);
+            const data = {
+                name: formData.get('name'),
+                message: formData.get('message')
+            };
+
+            fetch('/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('successMessage').style.display = 'block'; // Başarı mesajını göster
+                setTimeout(() => {
+                    window.location.href = "https://google.com"; // 5 saniye sonra Google'a yönlendir
+                }, 5000);
+            })
+            .catch((error) => {
+                alert('E-posta gönderilemedi: ' + error.message);
+            });
+        });
+    </script>
+</body>
+</html>

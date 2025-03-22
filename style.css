@@ -1,0 +1,99 @@
+/* Genel stil */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Arka plan animasyonu */
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Form container */
+.form-container {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    animation: fadeIn 1.5s ease-out; /* Fade in animasyonu */
+}
+
+/* Yazıların animasyonu */
+h2 {
+    font-size: 24px;
+    opacity: 0;
+    animation: fadeInText 2s forwards; /* Yazı animasyonu */
+}
+
+label, input, textarea, button {
+    opacity: 0;
+    animation: fadeInText 2s forwards;
+    animation-delay: 1s; /* 1 saniye sonra animasyon başlasın */
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+input, textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px;
+    background-color: #ff7e5f;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #feb47b;
+}
+
+#successMessage {
+    margin-top: 20px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Fade in yazı animasyonu */
+@keyframes fadeInText {
+    0% {
+        opacity: 0;
+        transform: translateY(20px); /* Yazı yukarıdan geliyormuş gibi animasyon */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fade in form container */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
